@@ -1,22 +1,30 @@
 
   var input = document.querySelector('input[type=file]')
   let str = ''
+
+  $('#upload').click( () => {
+    $('#getFile').click()
+  })
+
+  $('#start').click( () => {
+    fetchInstruction()
+  })
   
+  input.addEventListener('change', changeFile)
+
   function readFile(event) {
     str = event.target.result.split('\n')
   }
   
-  function changeFile() {
+  function decodeInstruction() {
     let file = input.files[0]
     let reader = new FileReader()
     reader.addEventListener('load', readFile)
     reader.readAsText(file)
   }
-  
-  input.addEventListener('change', changeFile)
-  
+
   function fetchInstruction () {
-      changeFile()
+      decodeInstruction()
       const instructions = str.map( string => string.trim()).filter( string => !string.includes(':') )
       executeInstructions(instructions)
   }
@@ -41,6 +49,8 @@
 
     }   
   }
+
+  
   
   
 

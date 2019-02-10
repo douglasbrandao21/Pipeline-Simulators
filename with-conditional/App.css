@@ -5,7 +5,20 @@
     box-sizing: border-box;
 }
 
+.btn:focus {
+    outline: none;
+}
+
+body,html {
+    height: 100%;
+}
+
 .centralizar {
     display: table;
     margin: 0 auto;
+}
+
+.buttons {
+    margin-top: 30px;
+    width: 150px;
 }

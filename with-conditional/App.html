@@ -19,16 +19,23 @@
     <body>
 
         <div class="container">
-            <input type="file" class="centralizar" hidden>
+            <input id="getFile" type="file" class="centralizar" hidden>
             
             <div class="row">
-                <div class="col-md-12">
-                    <button onclick="fetchInstruction()" class="btn btn-primary centralizar">Start</button>            
+
+                <div class="col-md-4"></div>
+
+                <div class="col-md-2">
+                    <button id="upload" onclick="this.blur()" class="btn btn-primary centralizar buttons">Upload Assembly</button>
                 </div>
-            </div>
 
+                <div class="col-md-2">
+                    <button  id="start" onclick="this.blur()" class="btn btn-primary centralizar buttons">Start</button>            
+                </div>
             
+                <div class="col-md-4"></div>
 
+            </div>
         </div>
 
 
@@ -38,8 +45,6 @@
         </script>
 
         <script src="App.js"></script>
-
-
     </body>
 
 </html>
