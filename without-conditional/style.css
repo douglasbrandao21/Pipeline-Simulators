@@ -1,0 +1,43 @@
+#title {
+    display: table;
+    margin: 25px auto 25px auto;
+}
+
+span.title-th {
+    display: table;
+    margin: 0 auto;
+}
+
+.table thead th {
+    border: 1px solid black;
+    width: 60px;
+}
+
+.table td, .table th {
+    border: none;
+}
+
+td.table-cell {
+    border: 1px solid black;
+    background-color: #cccccc
+}
+
+td.empty-cell {
+    border: none;
+}
+
+span.table-data {
+    display: table;
+    margin: 0 auto;
+}
+
+.btn {
+    display: table;
+    margin: 0 auto 35px auto;
+    border-radius: 25px;
+}
+
+.btn:focus .btn.focus {
+    border: none;
+}
+

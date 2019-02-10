@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Simulador de Pipeline</title>
+
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 id="title">Pipeline Simulator</h1>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+
+                <div class="col-md-2">
+                    <button id="active-btn" class="btn btn-outline-dark btn-lg">Next Stage</button>
+                </div>
+
+                <div class="col-md-2">
+                    <button id="clear" class="btn btn-outline-dark btn-lg">Clear Pipeline</button>
+                </div>
+
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+
+            </div>
+
+            <div class="row">
+                <table class="table">
+
+                    <thead>
+                      <tr id="table-titles"></tr>
+                    </thead>
+        
+                    <tbody id="table-cells"></tbody>
+
+                  </table>
+            </div>
+
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous">
+        </script>
+
+        <script src="table.js"></script>
+    </body>
+
+</html>
