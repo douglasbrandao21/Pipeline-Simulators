@@ -10,7 +10,7 @@
     fetchInstruction()
   })
   
-  input.addEventListener('change', changeFile)
+  input.addEventListener('change', decodeInstruction)
 
   function readFile(event) {
     str = event.target.result.split('\n')
