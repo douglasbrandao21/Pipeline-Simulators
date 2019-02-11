@@ -22,10 +22,28 @@
     reader.addEventListener('load', readFile)
     reader.readAsText(file)
   }
+  
+  function Instruction(command, operators) {
+    this.command = command
+    this.operators = operators
+  }
 
   function fetchInstruction () {
       decodeInstruction()
       const instructions = str.map( string => string.trim()).filter( string => !string.includes(':') )
+      let commands = new Array
+      let aux = new Array
+
+      for (let i=0; i < instructions.length; i++) {
+        aux = instructions[i].split('\t')
+        if(aux[1] != null)
+          commands[i] = new Instruction(aux[0], aux[1].split(','))
+        else
+        commands[i] = new Instruction(aux[0])
+      }
+
+      console.log(commands)
+
       executeInstructions(instructions)
   }
 
@@ -47,7 +65,7 @@
         //Do another stuff
       }
 
-    }   
+    }
   }
 
   
