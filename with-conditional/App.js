@@ -1,6 +1,7 @@
 
   var input = document.querySelector('input[type=file]')
   let str = ''
+  
 
   $('#upload').click( () => {
     $('#getFile').click()

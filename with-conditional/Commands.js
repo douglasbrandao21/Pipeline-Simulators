@@ -19,7 +19,7 @@ function jge(instruction, labels) {
 }
 
 function jl(instruction, labels) {
-
+   
 }
 
 function jle(instruction, labels) {
