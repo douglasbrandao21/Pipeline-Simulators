@@ -11,3 +11,12 @@ function Label(name, adress) {
     adress
   }
 }
+
+Registers = [
+  {name: 'eax', value:''},
+  {name: 'ebx', value:''},
+  {name: 'ebp', value:''},
+  {name: 'esp', value:''},
+  {name: 'temp', value:''},
+  {name: 'temp2', value:''}
+]

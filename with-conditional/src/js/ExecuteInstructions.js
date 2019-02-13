@@ -1,5 +1,5 @@
-function executeInstruction(instruction) {
-  switch (instruction.command) {
+function executeInstruction(instruction, labels) {
+  switch (instruction.opcode) {
     case 'jmp':
       jmp(instruction, labels)
       break
