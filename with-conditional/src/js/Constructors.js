@@ -5,10 +5,10 @@ function Instruction(opcode, operators) {
   }
 }
 
-function Label(name, adress) {
+function Label(name) {
   return {
     name,
-    adress
+    instruction = new Array
   }
 }
 
@@ -18,5 +18,6 @@ Registers = [
   {name: 'ebp', value:''},
   {name: 'esp', value:''},
   {name: 'temp', value:''},
-  {name: 'temp2', value:''}
+  {name: 'temp2', value:''},
+  stack = new Array
 ]

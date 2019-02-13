@@ -7,12 +7,14 @@ function decodeInstructions() {
   let labels = new Array
   let j = 0
 
+  /*
   for (let i = 0; i < instructions.length; i++) {
     if (instructions[i].includes(':')) {
       labels[j] = new Label(instructions[i].replace(':', ''), i)
       j++
     }
   }
+  */
 
   instructions = instructions.filter(string => !string.includes(':'))
   let aux = new Array
@@ -30,6 +32,8 @@ function decodeInstructions() {
   console.log(labels)
   console.log(Registers)
   
+  let i = 0
+  while(instructions[i] != null)
   
   for(let i=0; i < instructions.length; i++) {
 

@@ -1,3 +1,5 @@
+let cmpResult = 0
+
 function getRandom() {
     return Math.floor(Math.random() * 5 + 1)
 }
@@ -21,6 +23,9 @@ function startOperators(Registers, instruction) {
         Registers[aux[0]].value = 0
         Registers[aux[1]].value = getRandom()
     }
+    if(instruction.opcode == 'pushl') {
+        Registers[6].push(getRandom())
+    }
 }
 
 function isEnabled(Register) {
@@ -30,7 +35,9 @@ function isEnabled(Register) {
 }
 
 function jmp(instruction, labels) {
-    console.log('jmp')
+    
+    
+
 }
 
 function je(instruction, labels) {
@@ -59,26 +66,52 @@ function jle(instruction, labels) {
 
 function movl(instruction) {
     let adress = calculateOperators(instruction)
-    console.log('Adress ---> '+adress)
-    Registers[adress[0]].value = Registers[adress[1]].value
+
+    if(isNaN(parseInt(instruction.operators[1])))
+        Registers[adress[0]].value = Registers[adress[1]].value
+    else
+        Registers[adress[0]].value = parseInt(instruction.operators[1])
+}
+
+function pushl(instruction) {
+
 }
 
 function addl(instruction, labels) {
-    console.log('addl')
+    let adress = calculateOperators(instruction)
+
+    if(isNaN(parseInt(instruction.operators[1])))
+        Registers[adress[0]].value += Registers[adress[1]].value
+    else
+        Registers[adress[0]].value += parseInt(instruction.operators[1])
 }
 
 function incl(instruction, labels) {
-    console.log('incl')
+    let adress = calculateOperators(instruction)
+
+    Registers[adress[0]].value += 1
+    
 }
 
 function cmpl(instruction, labels) {
-    console.log('cmpl')
+    let adress = calculateOperators(instruction)
+
+    if(isNaN(parseInt(instruction.operators[1])))
+        if(Registers[adress[0]].value == Registers[adress[1]].value)
+            cmpResult = 1
+        else
+            cmpResult = 0
+    else
+        if(Registers[adress[0]].value == parseInt(instruction.operators[1]))
+            cmpResult = 1
+        else
+            cmpResult = 0
 }
 
 function leave() {
-    console.log('leave')
+    ret()
 }
 
 function ret() {
-    console.log('ret')
+
 }
