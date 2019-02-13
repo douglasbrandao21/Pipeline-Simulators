@@ -18,7 +18,6 @@ function calculateOperators(instruction) {
 function startOperators(Registers, instruction) {
     if(instruction.opcode == 'movl') {
         let aux = calculateOperators(instruction)
-        console.log(aux)
         Registers[aux[0]].value = 0
         Registers[aux[1]].value = getRandom()
     }
@@ -59,7 +58,9 @@ function jle(instruction, labels) {
 }
 
 function movl(instruction) {
-    
+    let adress = calculateOperators(instruction)
+    console.log('Adress ---> '+adress)
+    Registers[adress[0]].value = Registers[adress[1]].value
 }
 
 function addl(instruction, labels) {
