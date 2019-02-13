@@ -1,4 +1,10 @@
-let cmpResult = 0
+let flagJmp = 0
+let flagJe = 0
+let flagJne = 0
+let flagJg = 0
+let flagJge = 0
+let flagJl = 0
+let flagJle = 0
 
 function getRandom() {
     return Math.floor(Math.random() * 5 + 1)
@@ -35,33 +41,66 @@ function isEnabled(Register) {
 }
 
 function jmp(instruction, labels) {
-    
-    
-
+    for(let i=0; i < labels.length; i++) {
+        if(instruction.operators[0] == labels[i].name) {
+            count = labels[i].adress -1
+            break
+        }
+    }
 }
 
 function je(instruction, labels) {
-    console.log('je')
+    for(let i=0; i < labels.length; i++) {
+        if(instruction.operators[0] == labels[i].name && flagJe == 1) {
+            count = labels[i].adress
+            break
+        }
+    }
 }
 
 function jne(instruction, labels) {
-    console.log('jne')
+    for(let i=0; i < labels.length; i++) {
+        if(instruction.operators[0] == labels[i].name && flagJne == 1) {
+            count = labels[i].adress -1
+            break
+        }
+    }
 }
 
 function jg(instruction, labels) {
-    console.log('jg')
+    for(let i=0; i < labels.length; i++) {
+        if(instruction.operators[0] == labels[i].name && flagJg == 1) {
+            count = labels[i].adress
+            break
+        }
+    }
 }
 
 function jge(instruction, labels) {
-    console.log('jge')
+    for(let i=0; i < labels.length; i++) {
+        if(instruction.operators[0] == labels[i].name && flagJge == 1) {
+            count = labels[i].adress
+            break
+        }
+    }
 }
 
 function jl(instruction, labels) {
-    console.log('jl')
+    for(let i=0; i < labels.length; i++) {
+        if(instruction.operators[0] == labels[i].name && flagJl == 1) {
+            count = labels[i].adress
+            break
+        }
+    }
 }
 
 function jle(instruction, labels) {
-    console.log('jle')
+    for(let i=0; i < labels.length; i++) {
+        if(instruction.operators[0] == labels[i].name && flagJle == 1) {
+            count = labels[i].adress
+            break
+        }
+    }
 }
 
 function movl(instruction) {
@@ -96,16 +135,58 @@ function incl(instruction, labels) {
 function cmpl(instruction, labels) {
     let adress = calculateOperators(instruction)
 
-    if(isNaN(parseInt(instruction.operators[1])))
-        if(Registers[adress[0]].value == Registers[adress[1]].value)
-            cmpResult = 1
-        else
-            cmpResult = 0
-    else
-        if(Registers[adress[0]].value == parseInt(instruction.operators[1]))
-            cmpResult = 1
-        else
-            cmpResult = 0
+    if(isNaN(parseInt(instruction.operators[1]))) {
+        if(Registers[adress[0]].value == Registers[adress[1]].value) {
+            flagJe = 1
+            return
+        }
+        if(Registers[adress[0]].value != Registers[adress[1]].value) {
+            flagJne = 1
+            return
+        }
+        if(Registers[adress[0]].value > Registers[adress[1]].value) {
+            flagJg = 1
+            return
+        }
+        if(Registers[adress[0]].value >= Registers[adress[1]].value) {
+            flagJge = 1
+            return
+        }
+        if(Registers[adress[0]].value < Registers[adress[1]].value) {
+            flagJl = 1
+            return
+        }
+        if(Registers[adress[0]].value <= Registers[adress[1]].value) {
+            flagJle = 1
+            return
+        }
+    }   
+    else {
+        if(Registers[adress[0]].value == parseInt(instruction.operators[1])) {
+            flagJe = 1
+            return
+        }
+        if(Registers[adress[0]].value != parseInt(instruction.operators[1])) {
+            flagJne = 1
+            return
+        }
+        if(Registers[adress[0]].value > parseInt(instruction.operators[1])) {
+            flagJg = 1
+            return
+        }
+        if(Registers[adress[0]].value >= parseInt(instruction.operators[1])) {
+            flagJge = 1
+            return
+        }
+        if(Registers[adress[0]].value < parseInt(instruction.operators[1])) {
+            flagJl = 1
+            return
+        }
+        if(Registers[adress[0]].value <= parseInt(instruction.operators[1])) {
+            flagJle = 1
+            return
+        }       
+    }  
 }
 
 function leave() {

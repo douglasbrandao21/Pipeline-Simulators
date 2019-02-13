@@ -1,20 +1,21 @@
 let instructions = new Array()
+let count
 
 function decodeInstructions() {
   fetchInstruction()
 
   let instructions = str.map(string => string.trim())
-  let labels = new Array
+  let labels = new Array 
   let j = 0
-
-  /*
+  
+  k = 0
   for (let i = 0; i < instructions.length; i++) {
     if (instructions[i].includes(':')) {
-      labels[j] = new Label(instructions[i].replace(':', ''), i)
+      labels[j] = Label(instructions[i].replace(':', ''), i-k)
       j++
+      k++
     }
   }
-  */
 
   instructions = instructions.filter(string => !string.includes(':'))
   let aux = new Array
@@ -31,18 +32,16 @@ function decodeInstructions() {
   console.log(instructions)
   console.log(labels)
   console.log(Registers)
-  
-  let i = 0
-  while(instructions[i] != null)
-  
-  for(let i=0; i < instructions.length; i++) {
+
+  for(count=0; count < instructions.length; count++) {
 
     //Verifica se estou trabalhando com a primeira instrução, para atribuir valor a mesma.
-    if(i == 0) {
-      startOperators(Registers, instructions[i])
+    if(count == 0) {
+      startOperators(Registers, instructions[count])
     }
-    executeInstruction(instructions[i], labels)
+    console.log('I antes -->'+count)    
+    executeInstruction(instructions[count], labels)
+    console.log('I -->'+count)
   }
-  console.log(Registers)
 
 }

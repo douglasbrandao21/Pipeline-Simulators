@@ -5,10 +5,10 @@ function Instruction(opcode, operators) {
   }
 }
 
-function Label(name) {
+function Label(name, adress) {
   return {
     name,
-    instruction = new Array
+    adress
   }
 }
 
