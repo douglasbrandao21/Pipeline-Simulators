@@ -31,7 +31,7 @@ function startOperators(Registers, instruction) {
     if (instruction.opcode == 'movl') {
         let aux = calculateOperators(instruction)
         Registers[aux[0]].value = 0
-        Registers[aux[1]].value = /*getRandom()*/4
+        Registers[aux[1]].value = getRandom()
     }
     if (instruction.opcode == 'pushl') {
         Registers[6].push(getRandom())
