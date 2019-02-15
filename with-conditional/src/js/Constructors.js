@@ -1,7 +1,8 @@
-function Instruction(opcode, operators) {
+function Instruction(opcode, operators, adress) {
   return {
     opcode,
-    operators
+    operators,
+    adress
   }
 }
 
@@ -13,11 +14,11 @@ function Label(name, adress) {
 }
 
 Registers = [
-  {name: 'eax', value:''},
-  {name: 'ebx', value:''},
-  {name: 'ebp', value:''},
-  {name: 'esp', value:''},
-  {name: 'temp', value:''},
-  {name: 'temp2', value:''},
+  { name: 'eax', value: '' },
+  { name: 'ebx', value: '' },
+  { name: 'ebp', value: '' },
+  { name: 'esp', value: '' },
+  { name: 'temp', value: '' },
+  { name: 'temp2', value: '' },
   stack = new Array
 ]

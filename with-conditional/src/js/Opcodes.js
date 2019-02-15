@@ -12,6 +12,14 @@ function getRandom() {
     return Math.floor(Math.random() * 5 + 1)
 }
 
+function getFinalAdressLabel(label) {
+    for (let i = 0; i < labels.length; i++) {
+        if (labels[i].name == label) {
+            return labels[i].adress
+        }
+    }
+}
+
 //Recebe uma instrução como parametros e retorna o endereço de seus operadores (vetor Registers)
 function calculateOperators(instruction) {
     let adressOperators = new Array()
@@ -31,7 +39,7 @@ function startOperators(Registers, instruction) {
     if (instruction.opcode == 'movl') {
         let aux = calculateOperators(instruction)
         Registers[aux[0]].value = 0
-        Registers[aux[1]].value = getRandom()
+        Registers[aux[1]].value = /*getRandom()*/1
     }
     if (instruction.opcode == 'pushl') {
         Registers[6].push(getRandom())

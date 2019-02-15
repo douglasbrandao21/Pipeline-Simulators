@@ -2,11 +2,12 @@ let instructions = new Array()
 let count = 0
 let count2
 let jmps = ['jmp', 'je', 'jne', 'jg', 'jge', 'jl', 'jle']
+let instructionsFinal = new Array
+let labels = new Array
 
 function decodeInstructions() {
   fetchInstruction()
   let instructions = str.map(string => string.trim())
-  let labels = new Array
   let j = 0
 
   k = 0
@@ -24,7 +25,7 @@ function decodeInstructions() {
     aux = instructions[i].split('\t')
     if (aux[1] != null) {
       aux[1] = aux[1].replace(/ /g, '')
-      instructions[i] = Instruction(aux[0], aux[1].split(','))
+      instructions[i] = Instruction(aux[0], aux[1].split(','), i)
     }
     else
       instructions[i] = Instruction(aux[0])
@@ -40,9 +41,14 @@ function decodeInstructions() {
     if (count == 0) {
       startOperators(Registers, instructions[count])
     }
+    instructionsFinal.push(instructions[count])
     executeInstruction(instructions[count], labels)
     if (jmps.includes(instructions[count2].opcode)) {
       count--
     }
   }
+  console.log(instructionsFinal)
+
+  preparePipeline(instructionsFinal, instructions)
+
 }

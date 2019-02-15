@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Trabalho de Organização de Computadores</title>
+
+    <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Custom CSS -->
@@ -21,18 +23,31 @@
             <div class="col-md-4"></div>
 
             <div class="col-md-2">
-                <button id="upload" onclick="this.blur()" class="btn btn-primary centralizar buttons">Upload
+                <button id="upload" onclick="this.blur()" class="btn centralizar buttons">Upload
                     Assembly</button>
             </div>
 
             <div class="col-md-2">
-                <button id="start" onclick="this.blur()" class="btn btn-primary centralizar buttons">Start</button>
+                <button id="start" onclick="this.blur()" class="btn centralizar buttons">Start</button>
             </div>
 
             <div class="col-md-4"></div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button id="make-line" class="btn mt-4 mb-4 centralizar buttons">Clique aqui</button>
+            </div>
+        </div>
+
     </div>
 
+    <table class="table">
+        <thead>
+            <tr id="table-row-head" class="thead-dark"></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -43,6 +58,7 @@
     <script src="../js/DecodeInstructions.js"></script>
     <script src="../js/Opcodes.js"></script>
     <script src="../js/ExecuteInstructions.js"></script>
+    <script src="../js/Print.js"></script>
 
 </body>
 
