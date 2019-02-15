@@ -51,7 +51,7 @@ function formatTables(instruction, instructions) {
       }
       else {
         console.log('Tamanho do vetor Instructions -->' + instructions.length)
-        num_jumps = instructions.length - finalAdress
+        num_jumps = (instructions.length - firstAdress) - 1
         console.log('Número de Jumps -->' + num_jumps)
         limitPrint = 4
         for (let i = 0; i < num_jumps; i++) {

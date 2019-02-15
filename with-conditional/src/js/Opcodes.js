@@ -7,7 +7,6 @@ let flagJge = 0
 let flagJl = 0
 let flagJle = 0
 
-
 function getRandom() {
     return Math.floor(Math.random() * 5 + 1)
 }
