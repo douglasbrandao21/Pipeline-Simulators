@@ -76,6 +76,8 @@ function printTable(limitPrint) {
 
 $('#make-line').click(() => {
   $(`.col${controlCol}`).removeClass('hidden')
+  $(`.col${controlCol}`).addClass('animated')
+  $(`.col${controlCol}`).addClass('zoomIn faster')
   controlCol++
 })
 

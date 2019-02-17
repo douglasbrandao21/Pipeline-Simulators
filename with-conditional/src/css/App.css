@@ -21,9 +21,16 @@ body,html {
 .buttons {
     margin-top: 30px;
     width: 155px;
-    background-color: #fff;
-    color: #000;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
     border: 2px solid #333;
+}
+
+.buttons:hover {
+    background-color:#2E9AFE;
+    color: #fff;
+    border: 2px solid #2E9AFE;
 }
 
 table{
@@ -37,8 +44,12 @@ table{
 }
 
 .table td, .table th {
-    border: 1px solid black;
     width: 50px;
+    animation-duration: 300ms;
+}
+
+.border-cells {
+    border: 1px solid #000;
 }
 
 .table-data {
@@ -47,6 +58,34 @@ table{
 
 td.empty-cell {
     border: none;
+}
+
+/*======================================= BUTTONS =======================================*/
+.generic-btn {
+    padding: 10px;
+    width: 160px;
+    height: 50px;
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+.button_slide {
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #2E9AFE;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+    border: none;
+}
+
+.slide_right:hover {
+    box-shadow: inset 400px 0 0 0 #2E9AFE;
+    border: none;
+    color: #fff;
 }
 
 .hidden {
