@@ -48,3 +48,7 @@ table{
 td.empty-cell {
     border: none;
 }
+
+.hidden {
+    display: none;
+}

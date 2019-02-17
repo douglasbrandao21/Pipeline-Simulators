@@ -58,6 +58,7 @@ function jmp(instruction, labels) {
         if (instruction.operators[0] == labels[i].name) {
             console.log(labels[i].adress)
             count = labels[i].adress
+            instruction.flag = 1
             return
         }
     }
@@ -76,6 +77,7 @@ function je(instruction, labels) {
         if (instruction.operators[0] == labels[i].name && flagJe == 1) {
             count = labels[i].adress //Seta o próximo endereço para a posição da label desejada
             flagJe = 0 //Reseta a flag
+            instruction.flag = 1
             return
         }
     }
@@ -93,6 +95,7 @@ function jne(instruction, labels) {
         if (instruction.operators[0] == labels[i].name && flagJne == 1) {
             count = labels[i].adress
             flagJne = 0
+            instruction.flag = 1
             return
         }
     }
@@ -109,6 +112,7 @@ function jg(instruction, labels) {
         if (instruction.operators[0] == labels[i].name && flagJg == 1) {
             count = labels[i].adress
             flagJg = 0
+            instruction.flag = 1
             return
         }
     }
@@ -126,6 +130,7 @@ function jge(instruction, labels) {
         if (instruction.operators[0] == labels[i].name && flagJge == 1) {
             count = labels[i].adress
             flagJge = 0
+            instruction.flag = 1
             return
         }
     }
@@ -143,6 +148,7 @@ function jl(instruction, labels) {
         if (instruction.operators[0] == labels[i].name && flagJl == 1) {
             count = labels[i].adress
             flagJl = 0
+            instruction.flag = 1
             return
         }
     }
@@ -160,17 +166,17 @@ function jle(instruction, labels) {
         if (instruction.operators[0] == labels[i].name && flagJle == 1) {
             count = labels[i].adress
             flagJle = 0
+            instruction.flag = 1
             console.log('------------------------------------')
             console.log('entrou no JLE')
             console.log('valor de count -->' + count)
             console.log('valor da flagJLE-->' + flagJle)
+            console.log('valor da flag -->'+instruction.flag)
             console.log('------------------------------------')
-            return
+            return 
         }
     }
     count++
-
-
 }
 
 function movl(instruction) {
@@ -186,6 +192,7 @@ function movl(instruction) {
     console.log('valor de count -->' + count)
     console.log(`valor de ${Registers[adress[0]].name} --> ${Registers[adress[0]].value}`)
     console.log('------------------------------------')
+    instruction.flag = 1
 }
 
 function pushl(instruction) {
@@ -206,6 +213,7 @@ function addl(instruction, labels) {
     console.log(`valor de ${Registers[adress[0]].name} --> ${Registers[adress[0]].value}`)
     console.log(`valor de ${Registers[adress[1]].name} --> ${Registers[adress[1]].value}`)
     console.log('------------------------------------')
+    instruction.flag = 1
 }
 
 function incl(instruction, labels) {
@@ -220,12 +228,14 @@ function incl(instruction, labels) {
     Registers[adress[0]].value += 1
     console.log('valor do operando depois -->' + Registers[adress[0]].value)
     console.log('------------------------------------')
+    instruction.flag = 1
 
 
 }
 
 function cmpl(instruction) {
     let adress = calculateOperators(instruction)
+    instruction.flag = 1
 
     if (isNaN(parseInt(instruction.operators[1]))) {
         if (Registers[adress[0]].value == Registers[adress[1]].value) {

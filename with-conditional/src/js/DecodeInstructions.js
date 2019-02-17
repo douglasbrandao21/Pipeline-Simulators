@@ -41,14 +41,14 @@ function decodeInstructions() {
     if (count == 0) {
       startOperators(Registers, instructions[count])
     }
-    instructionsFinal.push(instructions[count])
-    executeInstruction(instructions[count], labels)
-    if (jmps.includes(instructions[count2].opcode)) {
+    executeInstruction(instructions[count], labels, instructionsFinal)
+    if (jmps.includes(instructions[count2].opcode))
       count--
-    }
   }
   console.log(instructionsFinal)
 
-  preparePipeline(instructionsFinal, instructions)
+  $('#make-line').click(preparePipeline(instructionsFinal, instructions))
+
+
 
 }

@@ -1,8 +1,9 @@
-function Instruction(opcode, operators, adress) {
+function Instruction(opcode, operators, adress, flag) {
   return {
     opcode,
     operators,
-    adress
+    adress,
+    flag
   }
 }
 
