@@ -1,4 +1,4 @@
-//Flags responsáveis por controlar as execuções dos comandos Jumps
+//Flags responsáveis por controlar as execuções dos comandos Jumps (uma para cada um deles).
 let flagJmp = 0
 let flagJe = 0
 let flagJne = 0
@@ -7,10 +7,12 @@ let flagJge = 0
 let flagJl = 0
 let flagJle = 0
 
+//Função para gerar um número aleatório entre 1 e 5.
 function getRandom() {
     return Math.floor(Math.random() * 5 + 1)
 }
 
+//Função para determinar os endereços em que os blocos de instruções de cada label começa.
 function getFinalAdressLabel(label) {
     for (let i = 0; i < labels.length; i++) {
         if (labels[i].name == label) {
@@ -19,7 +21,9 @@ function getFinalAdressLabel(label) {
     }
 }
 
-//Recebe uma instrução como parametros e retorna o endereço de seus operadores (vetor Registers)
+/*Função que recebe uma instrução como parametro e retorna o endereço de seus operadores 
+  (vetor Registers).
+ */
 function calculateOperators(instruction) {
     let adressOperators = new Array()
     for (j = 0; j < instruction.operators.length; j++) {
@@ -33,11 +37,15 @@ function calculateOperators(instruction) {
     return adressOperators
 }
 
-//Setar valores iniciais para os registradores
+//Função responsável por atribuir os valores iniciais de cada operador.
 function startOperators(Registers, instruction) {
+    /*Caso a instrução seja um 'movl', a função 'calculateOperators' é chamada
+      para determinar quais são seus operandos, e, assim, atribuir os valores.
+     */
     if (instruction.opcode == 'movl') {
         let aux = calculateOperators(instruction)
         Registers[aux[0]].value = 0
+        //O registrador recebe um valor aleatório.
         Registers[aux[1]].value = /*getRandom()*/1
     }
     if (instruction.opcode == 'pushl') {
@@ -45,196 +53,185 @@ function startOperators(Registers, instruction) {
     }
 }
 
-//Verifica se um registrador foi inicializado
+//Função que verifica se um registrador foi inicializado.
 function isEnabled(Register) {
     if (Register.value == '')
         return true
     return false
 }
 
-//Apenas pula para o próximo endereço
+//Apenas pula para o endereço do label em questão.
 function jmp(instruction, labels) {
     for (let i = 0; i < labels.length; i++) {
+        //Verifica para qual label deve-se pular.
         if (instruction.operators[0] == labels[i].name) {
             console.log(labels[i].adress)
+            //Indica qual o endereço da próxima instrução.
             count = labels[i].adress
+            //A flag da instrução recebe 1, para indicar a sua execução.
             instruction.flag = 1
             return
         }
     }
     count++
-
-    console.log('------------------------------------')
-    console.log('entrou no JMP')
-    console.log('valor de count -->' + count)
-    console.log('------------------------------------')
-
 }
 
-//Pula para a label especificada caso o resultado da comparação seja igual
+/*Pula para a label especificada caso o resultado da comparação indique que 
+  o valor do primeiro registrador é igual ao do segundo.
+ */
 function je(instruction, labels) {
     for (let i = 0; i < labels.length; i++) {
         if (instruction.operators[0] == labels[i].name && flagJe == 1) {
-            count = labels[i].adress //Seta o próximo endereço para a posição da label desejada
-            flagJe = 0 //Reseta a flag
+            //Indica qual o endereço da próxima instrução.
+            count = labels[i].adress
+            //Reseta a flag do comando 'jump' em questão.
+            flagJe = 0
+            //A flag da instrução recebe 1, para indicar a sua execução.
             instruction.flag = 1
             return
         }
     }
-    count++//Caso a flag esteja desligada, ou seja, a comparação não retornou true, incrementa count para
-    //seguir o fluxo do programa
-    console.log('------------------------------------')
-    console.log('entrou no JE')
-    console.log('valor de count -->' + count)
-    console.log('valor da flagJE-->' + flagJe)
-    console.log('------------------------------------')
+    /*Caso a flag esteja desligada, ou seja, a comparação não retornou true, incrementa count para
+      seguir o fluxo do programa.
+     */
+    count++
 }
 
+/*Pula para a label especificada caso o resultado da comparação indique que 
+  o valor do primeiro registrador não é igual ao do segundo.
+ */
 function jne(instruction, labels) {
     for (let i = 0; i < labels.length; i++) {
         if (instruction.operators[0] == labels[i].name && flagJne == 1) {
+            //Indica qual o endereço da próxima instrução.
             count = labels[i].adress
+            //Reseta a flag do jump em questão.
             flagJne = 0
+            //A flag da instrução recebe 1, para indicar a sua execução.
             instruction.flag = 1
             return
         }
     }
     count++
-    console.log('------------------------------------')
-    console.log('entrou no JNE')
-    console.log('valor de count -->' + count)
-    console.log('valor da flagJNE-->' + flagJNE)
-    console.log('------------------------------------')
 }
 
+/*Pula para a label especificada caso o resultado da comparação indique que 
+  o valor do primeiro registrador é maior que o do segundo.
+ */
 function jg(instruction, labels) {
     for (let i = 0; i < labels.length; i++) {
         if (instruction.operators[0] == labels[i].name && flagJg == 1) {
+            //Indica qual o endereço da próxima instrução.
             count = labels[i].adress
+            //Reseta a flag do jump em questão.
             flagJg = 0
+            //A flag da instrução recebe 1, para indicar a sua execução.
             instruction.flag = 1
             return
         }
     }
     count++
-
-    console.log('------------------------------------')
-    console.log('entrou no JG')
-    console.log('valor de count -->' + count)
-    console.log('valor da flagJG-->' + flagJG)
-    console.log('------------------------------------')
 }
 
+/*Pula para a label especificada caso o resultado da comparação indique que 
+  o valor do primeiro registrador é maior ou igual ao do segundo.
+ */
 function jge(instruction, labels) {
     for (let i = 0; i < labels.length; i++) {
         if (instruction.operators[0] == labels[i].name && flagJge == 1) {
+            //Indica qual o endereço da próxima instrução.
             count = labels[i].adress
+            //Reseta a flag do jump em questão.
             flagJge = 0
+            //A flag da instrução recebe 1, para indicar a sua execução.
             instruction.flag = 1
             return
         }
     }
     count++
-
-    console.log('------------------------------------')
-    console.log('entrou no JGE')
-    console.log('valor de count -->' + count)
-    console.log('valor da flagJGE-->' + flagJGE)
-    console.log('------------------------------------')
 }
 
+/*Pula para a label especificada caso o resultado da comparação indique que 
+  o valor do primeiro registrador é menor que o do segundo.
+ */
 function jl(instruction, labels) {
     for (let i = 0; i < labels.length; i++) {
         if (instruction.operators[0] == labels[i].name && flagJl == 1) {
+            //Indica qual o endereço da próxima instrução.
             count = labels[i].adress
+            //Reseta a flag do jump em questão.
             flagJl = 0
+            //A flag da instrução recebe 1, para indicar a sua execução.
             instruction.flag = 1
             return
         }
     }
     count++
-
-    console.log('------------------------------------')
-    console.log('entrou no JL')
-    console.log('valor de count -->' + count)
-    console.log('valor da flagJL-->' + flagJL)
-    console.log('------------------------------------')
 }
 
+/*Pula para a label especificada caso o resultado da comparação indique que 
+  o valor do primeiro registrador é menor ou igual ao do segundo.
+ */
 function jle(instruction, labels) {
     for (let i = 0; i < labels.length; i++) {
         if (instruction.operators[0] == labels[i].name && flagJle == 1) {
+            //Indica qual o endereço da próxima instrução.
             count = labels[i].adress
+            //Reseta a flag do jump em questão.
             flagJle = 0
+            //A flag da instrução recebe 1, para indicar a sua execução.
             instruction.flag = 1
-            console.log('------------------------------------')
-            console.log('entrou no JLE')
-            console.log('valor de count -->' + count)
-            console.log('valor da flagJLE-->' + flagJle)
-            console.log('valor da flag -->'+instruction.flag)
-            console.log('------------------------------------')
-            return 
+            return
         }
     }
     count++
 }
 
+//Instrução que atribui ao primeiro operando ao segundo.
 function movl(instruction) {
     let adress = calculateOperators(instruction)
 
+    //Verifica se algum dos operandos é, na verdade, um número inteiro.
     if (isNaN(parseInt(instruction.operators[1])))
         Registers[adress[0]].value = Registers[adress[1]].value
     else {
         Registers[adress[0]].value = parseInt(instruction.operators[1])
     }
-    console.log('------------------------------------')
-    console.log('entrou no MOVL')
-    console.log('valor de count -->' + count)
-    console.log(`valor de ${Registers[adress[0]].name} --> ${Registers[adress[0]].value}`)
-    console.log('------------------------------------')
+    //A flag da instrução recebe 1, para indicar a sua execução.
     instruction.flag = 1
 }
 
 function pushl(instruction) {
-
+    Registers[6].value.push(instruction.operators)
 }
 
+//Adiciona o valor do segundo operando ao primeiro.
 function addl(instruction, labels) {
     let adress = calculateOperators(instruction)
 
+    //Verifica se algum dos operandos é, na verdade, um número inteiro.
     if (isNaN(parseInt(instruction.operators[1])))
         Registers[adress[0]].value += Registers[adress[1]].value
     else
         Registers[adress[0]].value += parseInt(instruction.operators[1])
 
-    console.log('------------------------------------')
-    console.log('entrou no ADDL')
-    console.log('valor de count -->' + count)
-    console.log(`valor de ${Registers[adress[0]].name} --> ${Registers[adress[0]].value}`)
-    console.log(`valor de ${Registers[adress[1]].name} --> ${Registers[adress[1]].value}`)
-    console.log('------------------------------------')
+    //A flag da instrução recebe 1, para indicar a sua execução.
     instruction.flag = 1
 }
 
+//Incrementa o valor do operando.
 function incl(instruction, labels) {
     let adress = calculateOperators(instruction)
-
-
-
-    console.log('------------------------------------')
-    console.log('entrou no INCL')
-    console.log('valor de count -->' + count)
-    console.log('valor do operando antes -->' + Registers[adress[0]].value)
     Registers[adress[0]].value += 1
-    console.log('valor do operando depois -->' + Registers[adress[0]].value)
-    console.log('------------------------------------')
+    //A flag da instrução recebe 1, para indicar a sua execução.
     instruction.flag = 1
-
-
 }
 
+//Compara os valores dos operandos, atribuindo 1 a uma determinada flag, dependendo do resultado da comparação.
 function cmpl(instruction) {
     let adress = calculateOperators(instruction)
+
+    //A flag da instrução recebe 1, para indicar a sua execução.
     instruction.flag = 1
 
     if (isNaN(parseInt(instruction.operators[1]))) {
@@ -277,20 +274,14 @@ function cmpl(instruction) {
             flagJle = 1
         }
     }
-
-    console.log('------------------------------------')
-    console.log('entrou no CMP')
-    console.log('valor de count -->' + count)
-    console.log('valor de ' + Registers[adress[0]].name + '-->' + Registers[adress[0]].value)
-    console.log('valor de ' + Registers[adress[1]].name + '-->' + Registers[adress[1]].value)
-    console.log('valor da flagJle -->' + flagJle)
-    console.log('------------------------------------')
 }
 
 function leave() {
+    //Função que verifica se o programa está se preparando para ser finalizado. Penúltima instrução do programa.
     console.log('Entrou no Leave')
 }
 
 function ret() {
+    //Função que verifica se o programa será finalizado. Última instrução do programa.
     console.log('Entrou no Ret')
 }
