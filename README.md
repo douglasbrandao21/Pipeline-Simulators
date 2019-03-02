@@ -3,5 +3,9 @@
 
 ## Installing and Executing
 To run and test the project, just download the repository and open the main html file with some browser, preferably Google Chrome.
+````
 with conditional ---> src/html/App.html
+````
+````
 without conditional --> index.html
+````
