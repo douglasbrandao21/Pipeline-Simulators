@@ -11,4 +11,4 @@ without conditional --> index.html
 ````
 ## Preview
 
-![Image description](https://github.com/douglasbrandao21/pipeline-simulators/blob/master/with-conditional/src/img/img.jpg){:height="200px" width="200px"}
+![Image description](https://github.com/douglasbrandao21/pipeline-simulators/blob/master/with-conditional/src/img/img.jpg)
