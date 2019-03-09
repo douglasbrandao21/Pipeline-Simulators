@@ -10,5 +10,6 @@ with conditional ---> src/html/App.html
 without conditional --> index.html
 ````
 ## Preview
-
-<img src="https://github.com/douglasbrandao21/pipeline-simulators/blob/master/with-conditional/src/img/img.jpg" width="500">
+<p align="center">
+  <img src="https://github.com/douglasbrandao21/pipeline-simulators/blob/master/with-conditional/src/img/img.jpg" width="500">
+<p/>
